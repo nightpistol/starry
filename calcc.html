@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mini WhatsApp Messenger</title>
+  <title>Mini Real-Time Messaging Platform</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -55,85 +55,75 @@
       margin-top: 10px;
     }
 
-    #messageInput {
+    #messageInput1,
+    #messageInput2 {
       width: 70%;
       padding: 10px;
       margin-right: 10px;
     }
 
-    #sendButton {
+    #sendButton1,
+    #sendButton2 {
       padding: 10px;
       cursor: pointer;
       background-color: #128C7E;
       color: #fff;
       border: none;
     }
-
-    #emojiPicker {
-      width: 20%;
-      padding: 10px;
-    }
   </style>
 </head>
 <body>
 
   <header>
-    Mini WhatsApp Messenger
+    Mini Real-Time Messaging Platform
   </header>
 
   <div id="chat-container"></div>
 
   <div style="display: flex; align-items: center; padding: 10px;">
-    <input type="text" id="messageInput" placeholder="Type a message...">
-    <button id="sendButton" onclick="sendMessage()">Send</button>
-    <select id="emojiPicker">
-      <option value="😀">😀</option>
-      <option value="😂">😂</option>
-      <option value="😍">😍</option>
-      <!-- Add more emojis as needed -->
-    </select>
+    <input type="text" id="messageInput1" placeholder="User 1: Type a message...">
+    <button id="sendButton1" onclick="sendMessage(1)">Send</button>
+  </div>
+
+  <div style="display: flex; align-items: center; padding: 10px;">
+    <input type="text" id="messageInput2" placeholder="User 2: Type a message...">
+    <button id="sendButton2" onclick="sendMessage(2)">Send</button>
   </div>
 
   <script>
-    function sendMessage() {
-      const messageInput = document.getElementById('messageInput');
-      const emojiPicker = document.getElementById('emojiPicker');
+    function sendMessage(user) {
+      const messageInput = document.getElementById(`messageInput${user}`);
       const chatContainer = document.getElementById('chat-container');
 
       const message = messageInput.value.trim();
-      const emoji = emojiPicker.value;
 
-      if (message !== '' || emoji !== '') {
+      if (message !== '') {
         const newMessage = document.createElement('div');
         newMessage.classList.add('message');
 
-        // Alternate users for styling
-        newMessage.classList.add((chatContainer.children.length % 2 === 0) ? 'user1' : 'user2');
-
-        // Append emoji
-        if (emoji !== '') {
-          const emojiSpan = document.createElement('span');
-          emojiSpan.textContent = emoji;
-          newMessage.appendChild(emojiSpan);
-        }
+        // Add user class for styling
+        newMessage.classList.add(`user${user}`);
 
         // Append text
-        if (message !== '') {
-          const textSpan = document.createElement('span');
-          textSpan.textContent = message;
-          newMessage.appendChild(textSpan);
-        }
+        const textSpan = document.createElement('span');
+        textSpan.textContent = message;
+        newMessage.appendChild(textSpan);
 
         chatContainer.appendChild(newMessage);
 
         // Clear the input field after sending a message
         messageInput.value = '';
-        emojiPicker.value = '';
 
         // Scroll to the bottom to show the latest message
         chatContainer.scrollTop = chatContainer.scrollHeight;
       }
     }
+
+    // Simulate real-time updates every 2 seconds
+    setInterval(() => {
+      sendMessage(1);
+      sendMessage(2);
+    }, 2000);
   </script>
 
 </body>
