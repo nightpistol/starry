@@ -1,0 +1,40 @@
+body{
+  padding:0;
+  margin:0;
+  font-family: sans-serif;
+}
+#navbar{
+  padding: 8px;
+  margin:0;
+
+}
+#logo{
+  height:30px;
+  width:30px;
+}
+h1 {
+  text-align: center;
+  color: blueviolet;
+};
+h2 {
+  text-align: center;
+}
+#team{
+  width:50%;
+}
+#ban{
+  width:100%;
+  object-fit: cover;
+}
+.location{
+  color:grey;
+}
+.apply{
+  float: right;
+}
+a {
+  text-decoration: none;
+}
+#footer{
+  background-color:black;
+}
