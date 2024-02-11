@@ -21,12 +21,12 @@ const showWinner = (userWin) =>{
   if(userWin){
     userScore++;
     userscpara.innerText=userScore;
-    msg.innerText = 'you win';
+    msg.innerText = `you win ${userchoice} beats ${compchoice}`;
     msg.style.backgroundColor = 'green';
   } else{
     compScore++;
     compscorepara.innerText=compScore;
-    msg.innerText ='you lose'
+    msg.innerText =`you lose ${compchoice} beats ${userchoice}`;
     msg.style.backgroundColor = 'red';
   }
 }
